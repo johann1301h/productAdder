@@ -1,8 +1,10 @@
 # Product adder
 
-Description: A html prototype for adding products on the [digible platform](https://www.digible.net).
+> Description
+> A html prototype for adding products on the [digible platform](https://www.digible.net).
 
 ## Demo
+
 
 [Demo on Netlify](digible-product-adder.netlify.com)
 
