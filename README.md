@@ -20,5 +20,5 @@ So I set up to design a flow where some of the necessary steps and decisions cou
 ## How
 
 * We set up the necessary decisions the user would need to make
-* * At the same time trying to reduce the number of decision
+  * At the same time trying to reduce the number of decision
 * Then I started designing it in Graphiq (Vector design software)
