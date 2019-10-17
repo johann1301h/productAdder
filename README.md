@@ -7,7 +7,7 @@
 
 <img src="https://raw.githubusercontent.com/johann1301h/productAdder/master/Screenshot.png" alt="Screenshot" width="501px" title="This  is just a screenshot, click the demo link to see it in action." />
 
-[Demo on Netlify](digible-product-adder.netlify.com)
+[digible-product-adder.netlify.com](Demo on Netlify)
 
 ## Why
 
