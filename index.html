@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Encode+Sans:300,400,500" rel="stylesheet">
+	<style>
+
+		body {
+			margin: 0px;
+			background-color: #aaaaaa;
+		}
+		label {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+		.adder {
+			top: calc(50% - 250px);
+			left: calc(50% - 250px);
+			position: fixed;
+			background-color: #FFFFFF;
+			height: 501px;
+			width: 501px;
+			border-radius: 3px;
+			overflow: hidden;
+		}
+		.topbar {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			right: 0px;
+			height: 49px;
+			background-color: #252830;
+			font-family: 'Encode Sans', sans-serif;
+			color: #FFFFFF;
+			line-height: 49px;
+			padding-left: 14px;
+			font-weight: 300;
+			font-size: 16px;
+		}
+		.footer {
+			position: absolute;
+			bottom: 0px;
+			width: 100%;
+			height: 49px;
+			background-color: #FAFAFA;
+			border: 0px;
+			border-top: 1px solid #E2E2E2;
+		}
+		.hide {
+			position: absolute;
+			height: 21px;
+			width: 21px;
+			transition: 0.0s;
+			cursor: pointer;
+			top: 14px;
+			right: 18px;
+			z-index: 9;
+		}
+		.bar1_hide {
+			position: absolute;
+			height: 1px;
+			background: #FFFFFF;
+			display: block;
+			transition: 0.4s;
+			top: 10px;
+			width: 29.6984848098px; /* 21*sqrt(2) */
+			transform: rotate(-45deg) translate(-3.0754px, -3.0754px); /* (42-21sqrt(2))/4 */
+		}
+		.bar2_hide {
+			position: absolute;
+			height: 1px;
+			background: #FFFFFF;
+			display: block;
+			transition: 0.4s;
+			top: 10px;
+			width: 29.6984848098px; /* 21*sqrt(2) */
+			transform: rotate(45deg) translate(-3.0754px, 3.0754px); /* (42-21sqrt(2))/4 */
+		}
+		.buttons-1 {
+		  position: absolute;
+			background-color: #5CD358;
+			color: #FFFFFF;
+			right: 8px;
+			height: 33px;
+			line-height: 33px;
+			width: 122px;
+			top: 8px;
+			text-align: center;
+ 			border-radius: 4px;
+			cursor: pointer;
+			box-shadow: 0px 1px 10px rgba(145,145,145,0.5);;
+			text-transform: uppercase;
+			transition: all .15s ease;
+			-webkit-user-drag: none;
+		  font-size: 12px;
+		  font-family: 'Encode Sans', sans-serif;
+			font-weight: 500;
+		}
+		.buttons-1:hover {
+		  transform: translateY(-1px);
+		  box-shadow: 0px 2px 10px rgba(145,145,145,0.9);
+		}
+		.buttons-1:active {
+		  transform: translateY(1px);
+		  box-shadow: 0px 1px 5px rgba(145,145,145,0.8);
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+		.buttons-2 {
+			position: absolute;
+			background-color: #FFFFFF;
+		  color: #434856;
+			right: 138px;
+			height: 33px;
+			line-height: 33px;
+			width: 104px;
+			top: 8px;
+			text-align: center;
+			border-radius: 4px;
+			cursor: pointer;
+			box-shadow: 0px 1px 10px rgba(145,145,145,0.3);
+			text-transform: uppercase;
+			transition: all .15s ease;
+			-webkit-user-drag: none;
+			font-size: 12px;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 500;
+		}
+		.buttons-2:hover {
+			transform: translateY(-1px);
+			box-shadow: 0px 2px 10px rgba(145,145,145,0.5);
+		}
+		.buttons-2:active {
+			transform: translateY(1px);
+			box-shadow: 0px 1px 5px rgba(145,145,145,0.8);
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		.main {
+			position: absolute;
+			left: 0px;
+			right: 0px;
+			transition: 0.4s;
+		}
+		.simple {
+			background-color: #FFFFFF;
+			top: 49px;
+			height: 402px;
+		}
+		.advanced {
+			background-color: #FFFFFF;
+			top: 48px;
+			height: 404px;
+			overflow-y: scroll;
+		}
+		.advanced::-webkit-scrollbar {
+    	display: none;
+		}
+		.image-container {
+			position: absolute;
+			right: 0px;
+			width: 250px;
+			top: 0px;
+			bottom: 0px;
+			border: 0px;
+			border-left: 1px solid #E2E2E2;
+		}
+		.main-image {
+			position: absolute;
+			top: 14px;
+			left: 14px;
+			right: 14px;
+			height: 222px;
+			background-color: #F0F0F0;
+			background: url("5.jpg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: auto 222px;
+			cursor: pointer;
+		}
+		.image-picker {
+			position: absolute;
+			bottom: 50px;
+			left: 14px;
+			width: 235px;
+			top: 250px;
+			border: 0px;
+			border-top: 0px solid #E2E2E2;
+			overflow-y: scroll;
+			background-color: none;
+		}
+		.image-picker::-webkit-scrollbar {
+    	display: none;
+		}
+		.image-picker-crop {
+			position: relative;
+			top: -4.4px;
+			background-color: #F0F0F0;
+			height: 30px;
+			width: 30px;
+			overflow: hidden;
+			margin-top: 4.4px;
+			display: inline-block;
+			margin-right: 4.4px;
+			cursor: pointer;
+		}
+		.image-count {
+			position: absolute;
+			height: 49px;
+			line-height: 49px;
+			left: 14px;
+			width: 222px;
+			bottom: 0px;
+			border: 0px;
+			border-top: 1px solid #E2E2E2;
+			font-size: 14px;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 400;
+			text-align: center;
+		}
+		.sub-title {
+			position: absolute;
+			height: 25px;
+			line-height: 25px;
+			left: 14px;
+			width: 222px;
+			top: 44px;
+			border: 0px;
+			border-bottom: 1px solid #E2E2E2;
+			font-size: 13px;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 300;
+			color: #252830;
+			background-color: none;
+		}
+		.main-title {
+			position: absolute;
+			height: 30px;
+			line-height: 30px;
+			left: 14px;
+			width: 222px;
+			top: 14px;
+			border: 0px;
+			font-size: 20px;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 500;
+			color: #252830;
+			background-color: none;
+		}
+		.creator {
+			position: absolute;
+			height: 49px;
+			left: 14px;
+			width: 222px;
+			bottom: 0px;
+			border: 0px;
+			border-top: 1px solid #E2E2E2;
+		}
+		.creator-icon {
+			position: absolute;
+			left: 0px;
+			top: 5px;
+			width: 39px;
+			height: 39px;
+			border-radius: 24.5px;
+		}
+		.creator-title {
+			position: absolute;
+			left: 50px;
+			top: 10px;
+			right: 0px;
+			font-size: 14px;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 400;
+		}
+		.creator-sub-title {
+			position: absolute;
+			left: 50px;
+			top: 27px;
+			right: 0px;
+			font-size: 10px;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 300;
+		}
+		input[type=checkbox] {
+		  display: none;
+		}
+		input[type=checkbox]:checked ~ .adder .footer .tg1 .buttons-2 {
+		  background-color: #252830;
+			color: #FFFFFF;
+		}
+		input[type=checkbox]:checked ~ .adder .simple {
+			top: 451px;
+		}
+		.settings-add-product {
+			width: 100%;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 400;
+			color: #252830;
+			border-collapse: collapse;
+			background-color: none;
+		}
+		td {
+			border-bottom: 1px solid #E2E2E2;
+			height: 29px;
+			line-height: 29px;
+			vertical-align: baseline;
+			padding: 10px;
+			transition: all 0.15s ease;
+			cursor: pointer;
+		}
+		td:nth-child(1) {
+		  border-right: 1px solid #E2E2E2;
+			background-color: #FAFAFA;
+			width: 80px;
+			text-align: right;
+			color: #AAAAAA;
+			font-size: 13px;
+		}
+		td:nth-child(2) {
+			background-color: #FFFFFF;
+			color: #252830;
+			font-size: 13px;
+		}
+		tr:hover td {
+			background-color: #F5F5F5;
+		}
+		.description-input {
+			position: relative;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			height: 176px;
+			outline: none;
+			border: none;
+			resize: none;
+			padding: 0px;
+			margin: 0px;
+			display: block;
+			cursor: pointer;
+			background: none;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 400;
+			color: #252830;
+			font-size: 13px;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+		.description-input::-webkit-scrollbar {
+			display: none;
+		}
+		.title-input {
+			position: relative;
+			top: 0px;
+			left: 0px;
+			width: 100%;
+			outline: none;
+			border: none;
+			resize: none;
+			padding: 0px;
+			margin: 0px;
+			display: inline-block;
+			cursor: pointer;
+			background: none;
+			font-family: 'Encode Sans', sans-serif;
+			font-weight: 400;
+			color: #252830;
+			font-size: 13px;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+		.title-input:focus {
+			cursor: text;
+		}
+		.description-input:focus {
+			cursor: text;
+		}
+		input[id^=jsh-toggle-] {
+		  display: none;
+		}
+		input[id^=jsh-toggle-] ~ div {
+			position: relative;
+			top: -2px;
+			margin-right: 5px;
+		  width: 1.000000em;
+		  height: 0.500000em;
+			font-size: 40px;
+		  border-radius: 0.250000em;
+		  box-shadow: inset 0em 0.016667em 0.083333em rgba(122, 122, 122, 0.7);
+		  transition: all 0.15s ease;
+		  background-color: #CCCCCC;
+		  cursor: pointer;
+			display: inline-table;
+		}
+		input[id^=jsh-toggle-] ~ div div  {
+		  position: relative;
+		  border-radius: 0.166667em;
+		  box-shadow: 0em 0.016667em 0.083333em rgba(122, 122, 122, 0.7);
+		  background-color: #FFFFFF;
+		  top: 0.083333em;
+		  left: 0.083333em;
+		  width: 0.333333em;
+		  height: 0.333333em;
+		  box-sizing: border-box;
+		  transition: all 0.15s ease;
+			transform: translateX(0.000000em);
+		}
+		input[id^=jsh-toggle-]:checked ~ div {
+		  background-color: #5CD358;
+		}
+		input[id^=jsh-toggle-]:checked ~ div div {
+		  transform: translateX(0.500000em);
+		}
+		tr:first-of-type {
+			border-top: 1px solid #E2E2E2;
+		}
+		tr td[id^=live-hidden]:nth-child(2)::after {
+			content: "added live and available for purchase";
+		}
+		td:has(textarea) {
+			display: none;
+		}
+
+
+	</style>
+	</head>
+		<body>
+			<input type="checkbox" id="toggle-1" checked>
+			<div class="adder">
+				<div class="topbar">
+					Add product to store
+					<div class="hide">
+						<span class="bar1_hide"></span>
+						<span class="bar2_hide"></span>
+					</div>
+				</div>
+				<div class="main advanced">
+					<table class="settings-add-product">
+					  <tr>
+							<td>title</td>
+					    <td>
+								<input spellcheck="false" class="title-input" type="text" value="Mobius Dog Ring">
+							</td>
+					  </tr>
+					  <tr>
+					    <td>description</td>
+					    <td>
+								<textarea spellcheck="false" class="description-input">This is a 3D-printed product designed by the magnificent designer Peony Studio. It is available in silver, 14kt gold and gold plated brass.
+
+It is meant to remember your best friend.
+
+Info:
+Material: Silver
+Weight: 1.73 g
+
+Material: Gold
+Weight: 2.02 g
+
+Name: dogring
+H: 0.29 cm W: 1.84 cm D: 1.82 cm
+
+This product was published with Digible, the premiere platform for selling 3D-printed products.</textarea>
+							</td>
+					  </tr>
+					  <tr>
+					    <td>live/hidden</td>
+					    <td id="live-hidden">
+								<label for="jsh-toggle-ID"><input type="checkbox" id="jsh-toggle-ID" checked><div><div></div></div></label>
+								Product will be
+							</td>
+					  </tr>
+						<tr>
+							<td>category</td>
+							<td>Jewelry</td>
+						</tr>
+						<tr>
+							<td>profit/cut</td>
+							<td>10%</td>
+						</tr>
+						<tr>
+							<td>size scale</td>
+							<td>European (EU)</td>
+						</tr>
+					</table>
+				</div>
+				<div class="main simple">
+					<div class="image-container">
+						<div class="main-image">
+						</div>
+						<div class="image-picker">
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+							<div class="image-picker-crop"></div>
+						</div>
+						<div class="image-count">
+							<span id="numbers-picked">5</span> of <span id="numbers-total">24</span>
+						</div>
+					</div>
+					<div class="main-title">
+						Mobius Dog Ring
+					</div>
+					<div class="sub-title">
+						704,81 NOK - 1741,29 NOK
+					</div>
+
+					<div class="creator">
+						<img class="creator-icon" src="icon.png">
+						<div class="creator-title">
+							Peony Studio
+						</div>
+						<div class="creator-sub-title">
+							Designer
+						</div>
+					</div>
+				</div>
+				<div class="footer">
+					<div class="buttons-1">add to store</div>
+					<label class="tg1" for="toggle-1">
+						<div class="buttons-2">settings</div>
+					</label>
+				</div>
+			</div>
+		</body>
+</html>
