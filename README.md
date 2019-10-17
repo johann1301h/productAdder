@@ -7,7 +7,7 @@
 
 <img src="https://raw.githubusercontent.com/johann1301h/productAdder/master/Screenshot.png" alt="Screenshot" width="501px" title="This  is just a screenshot, click the demo link to see it in action." />
 
-[digible-product-adder.netlify.com](Demo on Netlify)
+[https://digible-product-adder.netlify.com](Demo on Netlify)
 
 ## Why
 
@@ -19,6 +19,7 @@ So I set up to design a flow where some of the necessary steps and decisions cou
 
 ## How
 
-* We set up the necessary decisions the user would need to make
+* Planning: We set up the necessary decisions the user would need to make
   * At the same time trying to reduce the number of decision
-* Then I started designing it in Graphiq (Vector design software)
+* Design: Then I started designing it in Graphiq (Vector design software)
+* Prototype: Then I create a standalone prototype with HTML & CSS
