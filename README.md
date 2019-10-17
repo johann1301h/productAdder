@@ -23,3 +23,4 @@ So I set up to design a flow where some of the necessary steps and decisions cou
   * At the same time trying to reduce the number of decision
 * Design: Then I started designing it in Graphiq (Vector design software)
 * Prototype: Then I create a standalone prototype with HTML & CSS
+* Implementation: After evaluating the UX, we implemented it in Meteor & Blaze
