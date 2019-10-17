@@ -5,7 +5,7 @@
 
 ## Demo
 
-
+[Screenshot](https://raw.githubusercontent.com/johann1301h/productAdder/master/Screenshot.png)
 [Demo on Netlify](digible-product-adder.netlify.com)
 
 ## Why
